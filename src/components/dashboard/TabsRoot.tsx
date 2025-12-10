@@ -139,13 +139,12 @@ export default function TabsRoot({ onCategoryChange }: TabsRootProps) {
                   <h3 className="mb-4 text-base font-semibold text-slate-800">
                     评论透视 & 详细归因
                   </h3>
-                  <CommentsFilter
-                    brands={summary.brands}
-                    comments={comments}
-                    selectedBrand={selectedBrand}
-                    onBrandSelect={setSelectedBrand}
-                    onFiltersChange={setFilters}
-                  />
+                      <CommentsFilter
+                        brands={summary.brands}
+                        comments={comments}
+                        selectedBrand={selectedBrand}
+                        onFiltersChange={setFilters}
+                      />
                   <div className="mt-4">
                     <CommentsTable
                       comments={comments}

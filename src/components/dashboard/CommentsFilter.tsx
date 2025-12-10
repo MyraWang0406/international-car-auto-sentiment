@@ -7,7 +7,6 @@ interface CommentsFilterProps {
   brands: BrandRow[]
   comments: UnifiedComment[]
   selectedBrand: string | null
-  onBrandSelect: (brand: string | null) => void
   onFiltersChange?: (filters: CommentFilters) => void
 }
 
@@ -15,7 +14,6 @@ export default function CommentsFilter({
   brands,
   comments,
   selectedBrand,
-  onBrandSelect,
   onFiltersChange,
 }: CommentsFilterProps) {
   const [filters, setFilters] = useState<CommentFilters>({
@@ -71,12 +69,10 @@ export default function CommentsFilter({
   }
 
   const MultiSelect = ({
-    label,
     options,
     selected,
     onChange,
   }: {
-    label: string
     options: string[]
     selected: string[]
     onChange: (value: string[]) => void
@@ -89,7 +85,7 @@ export default function CommentsFilter({
       >
         <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left text-sm shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500">
           <span className="block truncate">
-            {selected.length === 0 ? `选择${label}...` : `已选${selected.length}项`}
+            {selected.length === 0 ? `选择...` : `已选${selected.length}项`}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <ChevronDownIcon className="h-5 w-5 text-gray-400" />
@@ -126,13 +122,11 @@ export default function CommentsFilter({
   )
 
   const SingleSelect = <T extends string | number>({
-    label,
     options,
     selected,
     onChange,
     allLabel = '全部',
   }: {
-    label: string
     options: T[]
     selected: T | 'all'
     onChange: (value: T | 'all') => void
@@ -186,7 +180,6 @@ export default function CommentsFilter({
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">品牌</label>
           <MultiSelect
-            label="品牌"
             options={brands.map((b) => b.brand_cn)}
             selected={filters.brands}
             onChange={(value) => updateFilter('brands', value)}
@@ -195,7 +188,6 @@ export default function CommentsFilter({
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">型号</label>
           <MultiSelect
-            label="型号"
             options={availableModels}
             selected={filters.models}
             onChange={(value) => updateFilter('models', value)}
@@ -204,7 +196,6 @@ export default function CommentsFilter({
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">平台</label>
           <MultiSelect
-            label="平台"
             options={availablePlatforms}
             selected={filters.platforms}
             onChange={(value) => updateFilter('platforms', value as Platform[])}
@@ -213,7 +204,6 @@ export default function CommentsFilter({
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">情感</label>
           <SingleSelect<Sentiment | 'all'>
-            label="情感"
             options={['pos', 'neg', 'neutral']}
             selected={filters.sentiment}
             onChange={(value) => updateFilter('sentiment', value)}
@@ -222,7 +212,6 @@ export default function CommentsFilter({
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">年份</label>
           <SingleSelect<number | 'all'>
-            label="年份"
             options={availableYears}
             selected={filters.year}
             onChange={(value) => updateFilter('year', value)}
@@ -231,7 +220,6 @@ export default function CommentsFilter({
         <div>
           <label className="block text-xs font-medium text-gray-700 mb-1">月份</label>
           <SingleSelect<number | 'all'>
-            label="月份"
             options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
             selected={filters.month}
             onChange={(value) => updateFilter('month', value)}
