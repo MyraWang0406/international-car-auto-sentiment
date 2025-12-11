@@ -42,10 +42,10 @@ const TopBanner: React.FC = () => {
             {/* 副标题：品类说明 */}
             <p className="mt-1 flex flex-wrap items-center gap-1 text-sm text-sky-50">
               <span className="font-normal opacity-90">
-                国内外消费电子品牌舆情洞察 ·
+                智能终端品牌国内外产品舆情洞察 ·
               </span>
               <span className="font-medium">
-                智能手机 / 新能源汽车 / 其他大小智能家电
+                新能源车 / 智能手机 / 家用机器人
               </span>
             </p>
 

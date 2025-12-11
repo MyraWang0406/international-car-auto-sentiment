@@ -19,7 +19,7 @@ interface TabsRootProps {
 }
 
 export default function TabsRoot({ onCategoryChange }: TabsRootProps) {
-  const [activeCategory, setActiveCategory] = useState<Category>('phone')
+  const [activeCategory, setActiveCategory] = useState<Category>('car')
   const [summary, setSummary] = useState<DashboardSummary | null>(null)
   const [comments, setComments] = useState<UnifiedComment[]>([])
   const [loading, setLoading] = useState(true)
@@ -27,9 +27,9 @@ export default function TabsRoot({ onCategoryChange }: TabsRootProps) {
   const [filters, setFilters] = useState<CommentFilters | null>(null)
 
   const categories = [
-    { key: 'phone' as Category, label: '智能手机' },
-    { key: 'car' as Category, label: '新能源汽车' },
-    { key: 'device' as Category, label: '其他智能家电' },
+    { key: 'car' as Category, label: '出行终端（车）' },
+    { key: 'phone' as Category, label: '便携终端（手机等消费电子）' },
+    { key: 'device' as Category, label: '服务终端（AIoT 家用机器人）' },
   ]
 
   const selectedIndex = categories.findIndex((c) => c.key === activeCategory)
